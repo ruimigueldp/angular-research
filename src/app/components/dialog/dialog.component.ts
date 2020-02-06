@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 @Component({
   selector: 'app-dialog',
@@ -6,8 +7,15 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./dialog.component.scss']
 })
 
-export class DialogComponent {
-  constructor() { }
-
+export class DialogComponent implements OnInit {
   @Input() title: string;
+
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public dialogRef: MatDialogRef<DialogComponent>,
+  ) { }
+
+  ngOnInit() {
+    this.dialogRef.addPanelClass('dialog-wrapper');
+  }
 }

@@ -1,18 +1,19 @@
-<div class="dialogContainer">
-  <header
+<div class="mat-dialog-header">
+  <h1
     mat-dialog-title cdkDrag
     cdkDragRootElement=".cdk-overlay-pane"
     cdkDragHandle
   >
-    <span>{{ title }}</span>
-    <button mat-icon-button mat-dialog-close>
-      <mat-icon>close</mat-icon>
-    </button>
-  </header>
-  <section>
-    <div>
-      <ng-content select="mat-dialog-content"></ng-content>
-      <ng-content select="mat-dialog-actions"></ng-content>
-    </div>
-  </section>
+    {{ title || data.title }}
+  </h1>
+  <button mat-icon-button mat-dialog-close>
+    <mat-icon>close</mat-icon>
+  </button>
+</div>
+<div mat-dialog-content>
+  <p>dialog content</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button>Action1</button>
+  <button mat-button>Action2</button>
 </div>

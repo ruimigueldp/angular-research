@@ -1,0 +1,18 @@
+<div class="dialogContainer">
+  <header
+    mat-dialog-title cdkDrag
+    cdkDragRootElement=".cdk-overlay-pane"
+    cdkDragHandle
+  >
+    <span>{{ title }}</span>
+    <button mat-icon-button mat-dialog-close>
+      <mat-icon>close</mat-icon>
+    </button>
+  </header>
+  <section>
+    <div>
+      <ng-content select="mat-dialog-content"></ng-content>
+      <ng-content select="mat-dialog-actions"></ng-content>
+    </div>
+  </section>
+</div>

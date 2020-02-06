@@ -49,7 +49,9 @@ import {
   MatTreeModule,
 } from '@angular/material';
 
-const ANGULAR_CDK_TOOLS = [
+import { HomeComponent } from '@pages/home/home.component';
+
+const ANGULAR_CDK_TOOL_MODULES = [
   A11yModule,
   DragDropModule,
   ScrollingModule,
@@ -58,7 +60,7 @@ const ANGULAR_CDK_TOOLS = [
   CdkTreeModule
 ];
 
-const ANGULAR_MAT_COMPONENTS = [
+const ANGULAR_MAT_MODULES = [
   MatAutocompleteModule,
   MatBadgeModule,
   MatBottomSheetModule,
@@ -98,14 +100,19 @@ const ANGULAR_MAT_COMPONENTS = [
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ...ANGULAR_MAT_COMPONENTS,
-    ...ANGULAR_CDK_TOOLS,
+    ...ANGULAR_CDK_TOOL_MODULES,
+    ...ANGULAR_MAT_MODULES
+  ],
+  exports: [
+    ...ANGULAR_CDK_TOOL_MODULES,
+    ...ANGULAR_MAT_MODULES
   ],
   providers: [],
   bootstrap: [AppComponent]

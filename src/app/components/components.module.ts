@@ -5,9 +5,11 @@ import { MaterialModule } from '@components/material.module';
 
 import { DialogComponent } from './dialog/dialog.component';
 import { TableComponent } from './table/table.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
+import { ToolbarItemComponent } from './toolbar-item/toolbar-item.component';
 
 @NgModule({
-  declarations: [DialogComponent, TableComponent],
+  declarations: [DialogComponent, TableComponent, ToolbarComponent, ToolbarItemComponent],
   imports: [
     CommonModule,
     MaterialModule
@@ -15,7 +17,9 @@ import { TableComponent } from './table/table.component';
   exports: [
     MaterialModule,
     DialogComponent,
-    TableComponent
+    TableComponent,
+    ToolbarComponent,
+    ToolbarItemComponent
   ],
   entryComponents: [
     DialogComponent

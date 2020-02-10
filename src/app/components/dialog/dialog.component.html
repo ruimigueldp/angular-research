@@ -1,17 +1,25 @@
-<div class="mat-dialog-header">
+<div
+  class="mat-dialog-header"
+  cdkDrag
+  cdkDragRootElement=".cdk-overlay-pane"
+  cdkDragHandle
+  [attr.data-dialog-id]="dialogId"
+  (click)="handleHeaderClick($event)"
+>
   <h1
-    mat-dialog-title cdkDrag
-    cdkDragRootElement=".cdk-overlay-pane"
-    cdkDragHandle
+    mat-dialog-title
   >
-    {{ title || data.title }}
+    {{ title || data.name }}
   </h1>
-  <button mat-icon-button mat-dialog-close>
+  <button
+    (click)="handleCloseDialog($event)"
+    mat-icon-button
+  >
     <mat-icon>close</mat-icon>
   </button>
 </div>
 <div mat-dialog-content>
-  <p>dialog content</p>
+  <p>The <b>{{ data.name }}</b> element weights <b>{{ data.weight }}</b> and has <b>{{ data.symbol }}</b> as symbol!</p>
 </div>
 <div mat-dialog-actions>
   <button mat-button>Action1</button>

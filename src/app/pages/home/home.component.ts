@@ -11,15 +11,53 @@ import { PeriodicElement } from '@interfaces/periodic-element';
 })
 export class HomeComponent implements OnInit {
 
+  dialogs = {};
+
   constructor(public dialogService: MatDialog) {
+  }
+
+  get dialogsArray() {
+    console.log(Object.keys(this.dialogs).map(dialogId => {
+      return this.dialogs[dialogId].ref;
+    }))
+
+    return Object.keys(this.dialogs).map(dialogId => {
+      return this.dialogs[dialogId].ref;
+    });
   }
 
   ngOnInit() {
   }
 
   openDialog(element: PeriodicElement): void {
+    const dialogName = `${element.symbol.toLowerCase()}-${element.name.toLowerCase()}`;
 
-    debugger
+    if (!this.dialogs[dialogName]) {
+      this.dialogs[dialogName] = {
+        ref: this.dialogService.open(
+          DialogComponent,
+          {
+            id: dialogName,
+            width: '20vw',
+            hasBackdrop: false,
+            data: {
+              ...element
+            }
+          }
+        )
+      };
+
+      this.dialogs[dialogName].ref.afterClosed().subscribe(this.handleCloseDialog.bind(this));
+    } else {
+      const dialogRef: MatDialogRef<any> = this.dialogService.getDialogById(Object.keys(this.dialogs).find(
+        refName => refName === dialogName
+      ));
+      const overlayRef = dialogRef.componentInstance.dialogRef._overlayRef;
+
+      console.log('Already opened!!', overlayRef);
+      // debugger
+    }
+    // debugger
     // const dialogRef = this.dialogService.open(
     //   DialogComponent,
     //   {
@@ -40,5 +78,13 @@ export class HomeComponent implements OnInit {
     // dialogRef.afterClosed().subscribe(() => {
     //   console.log('The dialog was closed');
     // });
+  }
+
+  private _handleOverlayFocus() {
+
+  }
+
+  private handleCloseDialog(dialogId: string) {
+    delete this.dialogs[dialogId];
   }
 }

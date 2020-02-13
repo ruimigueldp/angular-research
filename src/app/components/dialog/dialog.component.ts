@@ -44,4 +44,10 @@ export class DialogComponent implements OnInit {
 
     this.dialogRef.close({ id: this.dialogId, action: 'close' });
   }
+
+  handleMaximizeDialog(e) {
+    e.stopImmediatePropagation();
+
+    this.dialogRef.updateSize('80vw', '80vh');
+  }
 }

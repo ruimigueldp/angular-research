@@ -1,0 +1,19 @@
+.toolbar-item {
+  align-items: center;
+  background-color: #fff;
+  cursor: pointer;
+  display: flex;
+  height: 100%;
+  min-width: 150px;
+  padding-left: 20px;
+  position: relative;
+
+  .toolbar-action-button {
+    background-color: white;
+    border: 1px solid orangered;
+    position: absolute;
+    top: -20px;
+    right: -10px;
+    overflow: hidden;
+  }
+}

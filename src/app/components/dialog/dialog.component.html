@@ -11,12 +11,20 @@
   >
     {{ title || data.name }}
   </h1>
-  <button
-    (click)="handleCloseDialog($event)"
-    mat-icon-button
-  >
-    <mat-icon>close</mat-icon>
-  </button>
+  <div class="dialog-control-actions">
+    <button
+      (click)="handleMinimizeDialog($event)"
+      mat-icon-button
+    >
+      <mat-icon>minimize</mat-icon>
+    </button>
+    <button
+      (click)="handleCloseDialog($event)"
+      mat-icon-button
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
 </div>
 <div mat-dialog-content>
   <p>The <b>{{ data.name }}</b> element weights <b>{{ data.weight }}</b> and has <b>{{ data.symbol }}</b> as symbol!</p>

@@ -1,5 +1,4 @@
 <div class="toolbar">
-  <div class="toolbar-item" *ngFor="let dialog of dialogs">
-    cenas
-  </div>
+  <app-toolbar-item *ngFor="let dialog of dialogs" [item]="dialog" (closeMinimizedDialogEvent)="handleCloseMinimizedDialog($event)">
+  </app-toolbar-item>
 </div>

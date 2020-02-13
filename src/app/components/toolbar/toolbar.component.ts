@@ -1,5 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
+
+import { PeriodicElement } from '@interfaces/periodic-element';
 
 @Component({
   selector: 'app-toolbar',
@@ -10,9 +12,14 @@ export class ToolbarComponent implements OnInit {
 
   @Input() dialogs: MatDialogRef<any>;
 
+  @Output() closeMinimizedDialogEvent = new EventEmitter<PeriodicElement>();
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  handleCloseMinimizedDialog(data: PeriodicElement) {
+    this.closeMinimizedDialogEvent.emit(data);
+  }
 }

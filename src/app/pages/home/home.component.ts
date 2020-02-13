@@ -11,19 +11,10 @@ import { PeriodicElement } from '@interfaces/periodic-element';
 })
 export class HomeComponent implements OnInit {
 
-  dialogs = {};
+  openDialogs = {};
+  minimizedDialogs = [];
 
   constructor(public dialogService: MatDialog) {
-  }
-
-  get dialogsArray() {
-    console.log(Object.keys(this.dialogs).map(dialogId => {
-      return this.dialogs[dialogId].ref;
-    }))
-
-    return Object.keys(this.dialogs).map(dialogId => {
-      return this.dialogs[dialogId].ref;
-    });
   }
 
   ngOnInit() {
@@ -32,24 +23,23 @@ export class HomeComponent implements OnInit {
   openDialog(element: PeriodicElement): void {
     const dialogName = `${element.symbol.toLowerCase()}-${element.name.toLowerCase()}`;
 
-    if (!this.dialogs[dialogName]) {
-      this.dialogs[dialogName] = {
-        ref: this.dialogService.open(
-          DialogComponent,
-          {
-            id: dialogName,
-            width: '20vw',
-            hasBackdrop: false,
-            data: {
-              ...element
-            }
+    if (!this.openDialogs[dialogName]) {
+      this.openDialogs[dialogName] = this.dialogService.open(
+        DialogComponent,
+        {
+          id: dialogName,
+          width: '20vw',
+          hasBackdrop: false,
+          data: {
+            ...element
           }
-        )
-      };
+        }
+      );
 
-      this.dialogs[dialogName].ref.afterClosed().subscribe(this.handleCloseDialog.bind(this));
+      this.openDialogs[dialogName].afterClosed().subscribe(this.handleCloseDialog.bind(this));
+      this.minimizedDialogs.push({ id: dialogName, ...element });
     } else {
-      const dialogRef: MatDialogRef<any> = this.dialogService.getDialogById(Object.keys(this.dialogs).find(
+      const dialogRef: MatDialogRef<any> = this.dialogService.getDialogById(Object.keys(this.openDialogs).find(
         refName => refName === dialogName
       ));
       const overlayRef = dialogRef.componentInstance.dialogRef._overlayRef;
@@ -80,11 +70,24 @@ export class HomeComponent implements OnInit {
     // });
   }
 
+  handleCloseMinimizedEvt(data) {
+    this.minimizedDialogs = this.minimizedDialogs.filter(dialog => {
+      return dialog.id !== data.id;
+    });
+  }
+
   private _handleOverlayFocus() {
 
   }
 
-  private handleCloseDialog(dialogId: string) {
-    delete this.dialogs[dialogId];
+  private handleCloseDialog(data: { id: string; action: string }): void {
+    if (data.action === 'close') {
+      delete this.openDialogs[data.id];
+      this.minimizedDialogs = this.minimizedDialogs.filter(dialog => {
+        return dialog.id !== data.id;
+      });
+    } else if (data.action === 'minimize') {
+      delete this.openDialogs[data.id];
+    }
   }
 }

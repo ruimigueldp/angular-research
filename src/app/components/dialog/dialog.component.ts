@@ -33,9 +33,15 @@ export class DialogComponent implements OnInit {
     console.log('Header clicked!!', overlayRef);
   }
 
+  handleMinimizeDialog(e) {
+    e.stopImmediatePropagation();
+
+    this.dialogRef.close({ id: this.dialogId, action: 'minimize' });
+  }
+
   handleCloseDialog(e) {
     e.stopImmediatePropagation();
 
-    this.dialogRef.close(this.dialogId);
+    this.dialogRef.close({ id: this.dialogId, action: 'close' });
   }
 }

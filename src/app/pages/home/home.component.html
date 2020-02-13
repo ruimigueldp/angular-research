@@ -1,5 +1,5 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="app-container">
   <app-table (itemClickedEvent)="openDialog($event)"></app-table>
-  <app-toolbar [dialogs]="dialogsArray"></app-toolbar>
+  <app-toolbar [dialogs]="minimizedDialogs" (closeMinimizedDialogEvent)="handleCloseMinimizedEvt($event)"></app-toolbar>
 </div>

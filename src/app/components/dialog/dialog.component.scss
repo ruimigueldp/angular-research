@@ -4,12 +4,19 @@
 
 .mat-dialog-header {
   align-items: center;
+  cursor: move;
   display: flex;
   justify-content: space-between;
-  cursor: move;
+  position: relative;
 
   h1 {
     margin: 0;
+  }
+
+  .dialog-control-actions {
+    position: absolute;
+    top: -20px;
+    right: -20px;
   }
 }
 

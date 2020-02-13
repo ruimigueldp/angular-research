@@ -1,3 +1,10 @@
-<div class="toolbar-item">
-
+<div class="toolbar-item" (click)="handleFocusDialog()">
+  <button
+    class="toolbar-action-button"
+    (click)="handleCloseDialog($event)"
+    mat-icon-button
+  >
+    <mat-icon>close</mat-icon>
+  </button>
+  {{ item.symbol +  ' - ' + item.name }}
 </div>

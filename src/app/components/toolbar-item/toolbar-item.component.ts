@@ -12,6 +12,7 @@ export class ToolbarItemComponent implements OnInit {
   @Input() item: PeriodicElement;
 
   @Output() closeMinimizedDialogEvent = new EventEmitter<PeriodicElement>();
+  @Output() openMinimizedDialogEvent = new EventEmitter<PeriodicElement>();
 
   constructor(
     public dialogService: MatDialog
@@ -35,6 +36,6 @@ export class ToolbarItemComponent implements OnInit {
   }
 
   handleFocusDialog() {
-    console.log('Dialog focus')
+    this.openMinimizedDialogEvent.emit(this.item);
   }
 }

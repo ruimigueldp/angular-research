@@ -13,6 +13,7 @@ export class ToolbarComponent implements OnInit {
   @Input() dialogs: MatDialogRef<any>;
 
   @Output() closeMinimizedDialogEvent = new EventEmitter<PeriodicElement>();
+  @Output() openMinimizedDialogEvent = new EventEmitter<PeriodicElement>();
 
   constructor() { }
 
@@ -21,5 +22,9 @@ export class ToolbarComponent implements OnInit {
 
   handleCloseMinimizedDialog(data: PeriodicElement) {
     this.closeMinimizedDialogEvent.emit(data);
+  }
+
+  handleOpenMinimizedDialog(data: PeriodicElement) {
+    this.openMinimizedDialogEvent.emit(data);
   }
 }

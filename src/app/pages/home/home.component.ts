@@ -24,19 +24,7 @@ export class HomeComponent implements OnInit {
     const dialogName = `${element.symbol.toLowerCase()}-${element.name.toLowerCase()}`;
 
     if (!this.openDialogs[dialogName]) {
-      this.openDialogs[dialogName] = this.dialogService.open(
-        DialogComponent,
-        {
-          id: dialogName,
-          width: '20vw',
-          hasBackdrop: false,
-          data: {
-            ...element
-          }
-        }
-      );
-
-      this.openDialogs[dialogName].afterClosed().subscribe(this.handleCloseDialog.bind(this));
+      this.assignDialog(dialogName, element);
       this.minimizedDialogs.push({ id: dialogName, ...element });
     } else {
       const dialogRef: MatDialogRef<any> = this.dialogService.getDialogById(Object.keys(this.openDialogs).find(
@@ -76,8 +64,32 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  handleOpenMinimizedEvt(data) {
+    if (!this.openDialogs[data.id]) {
+      const { id, ...rest } = data;
+
+      this.assignDialog(id, rest);
+    }
+  }
+
   private _handleOverlayFocus() {
 
+  }
+
+  private assignDialog(dialogName: string, element: PeriodicElement) {
+    this.openDialogs[dialogName] = this.dialogService.open(
+      DialogComponent,
+      {
+        id: dialogName,
+        width: '20vw',
+        hasBackdrop: false,
+        data: {
+          ...element
+        }
+      }
+    );
+
+    this.openDialogs[dialogName].afterClosed().subscribe(this.handleCloseDialog.bind(this));
   }
 
   private handleCloseDialog(data: { id: string; action: string }): void {

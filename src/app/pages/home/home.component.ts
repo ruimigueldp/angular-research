@@ -92,14 +92,24 @@ export class HomeComponent implements OnInit {
     this.openDialogs[dialogName].afterClosed().subscribe(this.handleCloseDialog.bind(this));
   }
 
-  private handleCloseDialog(data: { id: string; action: string }): void {
+  private handleCloseDialog(data: { dialog: PeriodicElement; action: string }): void {
     if (data.action === 'close') {
-      delete this.openDialogs[data.id];
+      delete this.openDialogs[data.dialog.id];
       this.minimizedDialogs = this.minimizedDialogs.filter(dialog => {
-        return dialog.id !== data.id;
+        return dialog.id !== data.dialog.id;
       });
     } else if (data.action === 'minimize') {
-      delete this.openDialogs[data.id];
+      delete this.openDialogs[data.dialog.id];
+
+      this.minimizedDialogs = this.minimizedDialogs.map((dialog) => {
+        let mutatedDialog = { ...dialog };
+
+        if (dialog.id === data.dialog.id) {
+          mutatedDialog = { ...data.dialog };
+        }
+
+        return mutatedDialog;
+      });
     }
   }
 }

@@ -27,7 +27,7 @@ export class ToolbarItemComponent implements OnInit {
 
     if (dialogRef) {
       dialogRef.close({
-        id,
+        dialog: this.item,
         action: 'close'
       });
     } else {

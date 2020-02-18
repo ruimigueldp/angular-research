@@ -8,6 +8,8 @@ import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 })
 
 export class DialogComponent implements OnInit {
+  isMaximized = false;
+
   @Input() title: string;
 
   constructor(
@@ -23,6 +25,11 @@ export class DialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log(this.data.isMaximized, this.data);
+
+    if (this.data.isMaximized) {
+      this.handleMaximizeDialog();
+    }
   }
 
   handleHeaderClick(e) {
@@ -36,18 +43,34 @@ export class DialogComponent implements OnInit {
   handleMinimizeDialog(e) {
     e.stopImmediatePropagation();
 
-    this.dialogRef.close({ id: this.dialogId, action: 'minimize' });
+    this.dialogRef.close({
+      dialog: {
+        id: this.dialogId,
+        ...this.data,
+        isMaximized: this.isMaximized,
+      },
+      action: 'minimize'
+    });
   }
 
   handleCloseDialog(e) {
     e.stopImmediatePropagation();
 
-    this.dialogRef.close({ id: this.dialogId, action: 'close' });
+    this.dialogRef.close({ dialog: { id: this.dialogId, ...this.data }, action: 'close' });
   }
 
-  handleMaximizeDialog(e) {
-    e.stopImmediatePropagation();
+  handleMaximizeDialog(e = null) {
+    if (e) {
+      e.stopImmediatePropagation();
+    }
 
-    this.dialogRef.updateSize('80vw', '80vh');
+    this.isMaximized = this.isMaximized
+      ? false
+      : true;
+
+    this.dialogRef.updateSize(
+      this.isMaximized ? '80vw' : '20vw',
+      this.isMaximized ? '80vh' : 'auto'
+    );
   }
 }

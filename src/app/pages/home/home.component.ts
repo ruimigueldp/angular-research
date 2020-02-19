@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
 
   openDialogs = {};
   minimizedDialogs = [];
+  currentFocusOverlayRef = null;
 
   constructor(public dialogService: MatDialog) {
   }
@@ -84,7 +85,8 @@ export class HomeComponent implements OnInit {
         width: '20vw',
         hasBackdrop: false,
         data: {
-          ...element
+          ...element,
+          focusCallback: this.handleFocusDialog.bind(this)
         }
       }
     );
@@ -111,5 +113,20 @@ export class HomeComponent implements OnInit {
         return mutatedDialog;
       });
     }
+  }
+
+  private handleFocusDialog(overlayRef) {
+    if (!this.currentFocusOverlayRef) {
+      this.focusHost(overlayRef);
+    } else {
+      this.currentFocusOverlayRef.hostElement.style.zIndex = '1000';
+
+      this.focusHost(overlayRef);
+    }
+  }
+
+  private focusHost(hostEl) {
+    this.currentFocusOverlayRef = hostEl;
+    this.currentFocusOverlayRef.hostElement.style.zIndex = '1001';
   }
 }

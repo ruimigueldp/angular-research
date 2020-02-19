@@ -37,7 +37,7 @@ export class DialogComponent implements OnInit {
     const dialogRef: MatDialogRef<any> = this.dialogService.getDialogById(dialogId);
     const overlayRef = dialogRef.componentInstance.dialogRef._overlayRef;
 
-    console.log('Header clicked!!', overlayRef);
+    this.data.focusCallback(overlayRef);
   }
 
   handleMinimizeDialog(e) {

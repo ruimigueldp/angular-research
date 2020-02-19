@@ -70,6 +70,11 @@ export class HomeComponent implements OnInit {
       const { id, ...rest } = data;
 
       this.assignDialog(id, rest);
+    } else {
+      const dialogRef: MatDialogRef<any> = this.dialogService.getDialogById(data.id);
+      const overlayRef = dialogRef.componentInstance.dialogRef._overlayRef;
+
+      this.handleFocusDialog(overlayRef);
     }
   }
 

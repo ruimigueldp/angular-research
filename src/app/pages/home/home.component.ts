@@ -124,7 +124,9 @@ export class HomeComponent implements OnInit {
     if (!this.currentFocusOverlayRef) {
       this.focusHost(overlayRef);
     } else {
-      this.currentFocusOverlayRef.hostElement.style.zIndex = '1000';
+      if (this.currentFocusOverlayRef.hostElement) {
+        this.currentFocusOverlayRef.hostElement.style.zIndex = '1000';
+      }
 
       this.focusHost(overlayRef);
     }

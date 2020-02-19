@@ -4,6 +4,7 @@
   cdkDragHandle
   [attr.data-dialog-id]="dialogId"
   (click)="handleHeaderClick($event)"
+  (dblclick)="handleMaximizeDialog($event)"
 >
   <div class="mat-dialog-header">
     <h1

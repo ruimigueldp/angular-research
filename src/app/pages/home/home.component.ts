@@ -87,7 +87,7 @@ export class HomeComponent implements OnInit {
       DialogComponent,
       {
         id: dialogName,
-        width: '20vw',
+        width: 'auto',
         hasBackdrop: false,
         data: {
           ...element,

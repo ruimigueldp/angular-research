@@ -1,15 +1,6 @@
-<div
-  cdkDrag
-  cdkDragRootElement=".cdk-overlay-pane"
-  cdkDragHandle
-  [attr.data-dialog-id]="dialogId"
-  (click)="handleHeaderClick($event)"
-  (dblclick)="handleMaximizeDialog($event)"
->
-  <div class="mat-dialog-header">
-    <h1
-      mat-dialog-title
-    >
+<div [attr.data-dialog-id]="dialogId" (click)="handleHeaderClick($event)" (dblclick)="handleMaximizeDialog($event)">
+  <div class="mat-dialog-header" cdkDrag cdkDragRootElement=".cdk-overlay-pane" cdkDragHandle>
+    <h1 mat-dialog-title>
       {{ title || data.name }}
     </h1>
     <div class="dialog-control-actions">

@@ -11,9 +11,12 @@ export class DialogComponent implements OnInit {
   isMaximized = false;
 
   @Input() title: string;
+  @Input() dataInput: any;
+
+  data: any;
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
+    @Inject(MAT_DIALOG_DATA) public dataInject: any,
     public dialogRef: MatDialogRef<DialogComponent>,
     public dialogService: MatDialog
   ) { }
@@ -25,6 +28,7 @@ export class DialogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.data = this.dataInput ? this.dataInput : this.dataInject;
     console.log(this.data.isMaximized, this.data);
 
     if (this.data.isMaximized) {

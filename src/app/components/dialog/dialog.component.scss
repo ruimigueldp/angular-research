@@ -1,5 +1,9 @@
 :host {
   background-color: white;
+
+  > div {
+    height: 100%;
+  }
 }
 
 .mat-dialog-header {

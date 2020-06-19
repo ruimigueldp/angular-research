@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material';
 
-import { DialogComponent } from '@components/dialog/dialog.component';
+import { ElementDialogComponent, } from '@components/element-dialog/element-dialog.component';
 import { PeriodicElement } from '@interfaces/periodic-element';
 
 @Component({
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
 
   private assignDialog(dialogName: string, element: PeriodicElement) {
     this.openDialogs[dialogName] = this.dialogService.open(
-      DialogComponent,
+      ElementDialogComponent,
       {
         id: dialogName,
         width: 'auto',

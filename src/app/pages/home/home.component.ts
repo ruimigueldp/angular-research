@@ -3,6 +3,7 @@ import { MatDialog, MatDialogRef } from '@angular/material';
 
 import { ElementDialogComponent, } from '@components/element-dialog/element-dialog.component';
 import { PeriodicElement } from '@interfaces/periodic-element';
+import { Store } from '@ngxs/store';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +16,7 @@ export class HomeComponent implements OnInit {
   minimizedDialogs = [];
   currentFocusOverlayRef = null;
 
-  constructor(public dialogService: MatDialog) {
+  constructor(public dialogService: MatDialog, public store: Store) {
   }
 
   ngOnInit() {

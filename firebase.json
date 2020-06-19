@@ -1,0 +1,19 @@
+{
+  "hosting": [
+    {
+      "target": "atlas-research",
+      "public": "dist/atlas-research",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+          "source": "**",
+          "destination": "/index.html"
+        }
+      ]
+    }
+  ]
+}

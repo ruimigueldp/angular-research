@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { PeriodicElement } from '@interfaces/periodic-element';
+import { ElementsService } from '@services/elements.service';
+import { Observable } from 'rxjs';
 
 const ELEMENT_DATA: PeriodicElement[] = [
   {position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H'},
@@ -21,14 +23,15 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./table.component.scss']
 })
 export class TableComponent implements OnInit {
-  displayedColumns: string[] = ['position', 'name', 'weight', 'symbol'];
-  dataSource = ELEMENT_DATA;
+  displayedColumns: string[] = ['name', 'weight', 'symbol'];
+  elements$: Observable<PeriodicElement[]>;
 
   @Output() itemClickedEvent = new EventEmitter<PeriodicElement>();
 
-  constructor() { }
+  constructor(private elementsService: ElementsService) { }
 
   ngOnInit() {
+    this.elements$ = this.elementsService.getElements();
   }
 
   handleItemClick(element: PeriodicElement) {

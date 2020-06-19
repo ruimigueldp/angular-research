@@ -3,6 +3,7 @@
   "compilerOptions": {
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "skipLibCheck": true,
     "sourceMap": true,
     "declaration": false,
     "downlevelIteration": true,
@@ -22,6 +23,8 @@
       "@components/*": ["./src/app/components/*"],
       "@pages/*": ["./src/app/pages/*"],
       "@interfaces/*": ["./src/app/interfaces/*"],
+      "@services/*": ["./src/app/services/*"],
+      "@pipes/*": ["./src/app/pipes/*"],
       "@root/*": ["./src/app/*"],
     },
   },

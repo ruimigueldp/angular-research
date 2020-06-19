@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-research-94037": {
+      "hosting": {
+        "atlas-research": [
+          "angular-research-94037"
+        ]
+      }
+    }
+  }
+}

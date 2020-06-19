@@ -9,6 +9,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ToolbarItemComponent } from './toolbar-item/toolbar-item.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ElementDialogComponent } from './element-dialog/element-dialog.component';
+import { NavComponent } from './nav/nav.component';
 
 import { ObsWithStatus } from '@pipes/obs-with-status.pipe';
 
@@ -20,6 +21,7 @@ import { ObsWithStatus } from '@pipes/obs-with-status.pipe';
     ToolbarComponent,
     ToolbarItemComponent,
     LoadingComponent,
+    NavComponent,
     ObsWithStatus,
   ],
   imports: [
@@ -34,6 +36,7 @@ import { ObsWithStatus } from '@pipes/obs-with-status.pipe';
     ToolbarComponent,
     ToolbarItemComponent,
     LoadingComponent,
+    NavComponent,
     ObsWithStatus,
   ],
   entryComponents: [

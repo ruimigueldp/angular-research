@@ -1,0 +1,24 @@
+<app-dialog [title]="data.name" [dataInput]="data">
+  <mat-dialog-content>
+    <form class="create-el-form">
+      <mat-form-field class="example-full-width">
+        <mat-label>Name</mat-label>
+        <input matInput>
+      </mat-form-field>
+      <table class="full-width" cellspacing="0"><tr>
+        <td><mat-form-field class="full-width">
+          <mat-label>Weight</mat-label>
+          <input matInput>
+        </mat-form-field></td>
+        <td><mat-form-field class="full-width">
+          <mat-label>Symbol</mat-label>
+          <input matInput>
+        </mat-form-field></td>
+      </tr></table>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-button>Save</button>
+    <button mat-button>Cancel</button>
+  </mat-dialog-actions>
+</app-dialog>

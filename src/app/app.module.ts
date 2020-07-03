@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
 import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 // import { AngularFireAnalyticsModule } from '@angular/fire/analytics';
@@ -30,7 +31,8 @@ import { AppState } from '@state/app.state';
     AngularFirestoreModule,
     NgxsModule.forRoot([AppState], {
       developmentMode: !environment.production
-    })
+    }),
+    NgxsReduxDevtoolsPluginModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

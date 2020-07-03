@@ -10,6 +10,7 @@ import { ToolbarItemComponent } from './toolbar-item/toolbar-item.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ElementDialogComponent } from './element-dialog/element-dialog.component';
 import { NavComponent } from './nav/nav.component';
+import { CreateElementDialogComponent } from './create-element-dialog/create-element-dialog.component';
 
 import { ObsWithStatus } from '@pipes/obs-with-status.pipe';
 
@@ -23,6 +24,7 @@ import { ObsWithStatus } from '@pipes/obs-with-status.pipe';
     LoadingComponent,
     NavComponent,
     ObsWithStatus,
+    CreateElementDialogComponent,
   ],
   imports: [
     CommonModule,
@@ -38,6 +40,7 @@ import { ObsWithStatus } from '@pipes/obs-with-status.pipe';
     LoadingComponent,
     NavComponent,
     ObsWithStatus,
+    CreateElementDialogComponent,
   ],
   entryComponents: [
     DialogComponent,

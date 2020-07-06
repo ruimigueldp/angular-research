@@ -1,27 +1,25 @@
-import { MatDialogRef, MatDialog } from '@angular/material';
-
 export class AddDialog {
   static readonly type = '[App] Add Dialog';
 
-  constructor(public name: string, public dialog: MatDialogRef<MatDialog>) {}
+  constructor(public dialog: any) {}
 }
 
-export class RemoveDialog {
-  static readonly type = '[App] Remove Dialog';
+export class CloseDialog {
+  static readonly type = '[App] Close Dialog';
 
-  constructor(public name: string) {}
+  constructor(public id: string) {}
 }
 
-export class AddMinimizedDialog {
-  static readonly type = '[App] Add Minimized Dialog';
+export class CloseMinimizedDialog {
+  static readonly type = '[App] Close Minimized Dialog';
 
-  constructor(public dialogData: any) {}
+  constructor(public id: string) {}
 }
 
-export class RemoveMinimizedDialog {
-  static readonly type = '[App] Remove Minimized Dialog';
+export class MinimizeDialog {
+  static readonly type = '[App] Minimize Dialog';
 
-  constructor(public id: any) {}
+  constructor(public id: string, public dialogData: any) {}
 }
 
 export class ToggleDialogMaximized {
